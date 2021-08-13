@@ -47,4 +47,4 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     example = Table()
     example.show()
-    sys.exit(app.exec_())
+    sys.exit(app.exec())
