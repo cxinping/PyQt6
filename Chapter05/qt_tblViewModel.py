@@ -47,7 +47,6 @@ class Table(QWidget):
     def btn_clicks_1(self):
         print("点击了删除按钮")
         indexs = self.tableView.selectionModel().selection().indexes()
-        print(indexs)
         if len(indexs) > 0:
             # 取第一行的索引
             index = indexs[0]
