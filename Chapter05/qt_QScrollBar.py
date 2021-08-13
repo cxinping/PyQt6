@@ -6,16 +6,14 @@
 
 """
 
-import sys
-# from PyQt5.QtCore import *
-# from PyQt5.QtGui import *
-# from PyQt5.QtWidgets import *
 from PySide6.QtWidgets import *
 from PySide6 import QtGui, QtCore
 from PySide6.QtGui import QPalette, QFont, QColor
+import sys
 
 
 class Example(QWidget):
+
     def __init__(self):
         super(Example, self).__init__()
         self.initUI()
@@ -43,9 +41,10 @@ class Example(QWidget):
 
     def sliderval(self):
         print(self.s1.value(), self.s2.value(), self.s3.value())
+        # 设置调色板
         palette = QPalette()
-        c = QColor(self.s1.value(), self.s2.value(), self.s3.value(), 255)
-        palette.setColor(QPalette.ColorGroup, c)
+        color = QColor(self.s1.value(), self.s2.value(), self.s3.value(), 255)
+        palette.setColor(QPalette.WindowText, color)
         self.l1.setPalette(palette)
 
 
