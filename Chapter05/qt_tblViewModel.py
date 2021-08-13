@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*- 
-'''
+"""
     【简介】
 	PySide6中QTableView表格视图控件的例子
-   
-  
-'''
+
+"""
 
 from PySide6.QtWidgets import *
 from PySide6.QtGui import *
@@ -17,7 +16,7 @@ class Table(QWidget):
     def __init__(self, arg=None):
         super(Table, self).__init__(arg)
         self.setWindowTitle("QTableView表格视图控件的例子")
-        self.resize(500, 300)
+        self.resize(400, 300)
         self.model = QStandardItemModel(4, 4)
         self.model.setHorizontalHeaderLabels(['标题1', '标题2', '标题3', '标题4'])
 
@@ -31,6 +30,15 @@ class Table(QWidget):
         # 下面代码让表格 100% 的填满窗口
         self.tableView.horizontalHeader().setStretchLastSection(True)
         self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
+        # 设置只能选中整行
+        #self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)
+        # 设置只能选中多行
+        #self.tableView.setSelectionMode(QAbstractItemView.ExtendedSelection)
+        # 设置只能选中一个表格
+        #self.tableView.setSelectionMode(QAbstractItemView.SingleSelection)
+
+
         dlgLayout = QVBoxLayout()
         dlgLayout.addWidget(self.tableView)
         self.setLayout(dlgLayout)
