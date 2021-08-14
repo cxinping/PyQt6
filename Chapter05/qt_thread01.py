@@ -16,6 +16,7 @@ sec = 0
 
 
 def setTime():
+    print('* setTime *')
     global sec
     sec += 1
     # LED显示数字+1
@@ -23,12 +24,13 @@ def setTime():
 
 
 def work():
+    print('* work ')
     # 计时器每秒计数
     timer.start(1000)
     for i in range(2000000000):
         pass
 
-    timer.stop()
+    #timer.stop()
 
 
 if __name__ == "__main__":
