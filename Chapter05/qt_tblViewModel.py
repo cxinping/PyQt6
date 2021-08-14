@@ -28,11 +28,12 @@ class Table(QWidget):
         self.tableView = QTableView()
         self.tableView.setModel(self.model)
         # 下面代码让表格 100% 的填满窗口
-        self.tableView.horizontalHeader().setStretchLastSection(True)
-        self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        # self.tableView.horizontalHeader().setStretchLastSection(True)
+        # self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-        self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
-        self.tableView.setSelectionMode(QAbstractItemView.ExtendedSelection)  # 设置只能选中多行
+        # 下面代码可以选中表格的多行
+        # self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
+        # self.tableView.setSelectionMode(QAbstractItemView.ExtendedSelection)  # 设置只能选中多行
 
         dlgLayout = QVBoxLayout()
         dlgLayout.addWidget(self.tableView)

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*- 
-'''
+"""
     【简介】
 	保存PyQt6类的使用手册到本地
-   
-    
-'''
+
+
+"""
 
 import sys
 from PyQt6.QtWidgets import *
