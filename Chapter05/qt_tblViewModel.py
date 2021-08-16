@@ -60,7 +60,6 @@ class Table(QWidget):
 
     # 点击响应方法, 删除当前选中的数据方法1
     def btn_clicks_1(self):
-        print("点击了删除按钮")
         indexs = self.tableView.selectionModel().selection().indexes()
         print(indexs)
         if len(indexs) > 0:
@@ -72,9 +71,8 @@ class Table(QWidget):
             MessageBox = QMessageBox()
             MessageBox.information(self.tableView, "标题", "没有选中表格中要删除的行")
 
-    # 点击响应方法, 删除当前选中的数据方法2
+    # 点击删除按钮响应方法, 删除选中的多行数据
     def del_records_btn_click(self):
-        print("点击了删除按钮")
         # index = self.tableView.currentIndex()
         # print(index, index.row())
         #self.model.removeRow(index.row())
@@ -82,7 +80,6 @@ class Table(QWidget):
         # indexs = self.tableView.selectionModel().selectedRows()
         # for index in reversed(indexs):
         #     self.model.removeRow(index.row())
-
 
         indexs = self.tableView.selectionModel().selectedRows()
         list1 = []  # 创建一个空list用于存放需要删除的行号
@@ -92,6 +89,7 @@ class Table(QWidget):
         for i in list1:  # 按照list删除对应行
             self.model.removeRow(i)
 
+    # 点击添加按钮相应方法，添加数据
     def add_records_btn_click(self):
         self.model.appendRow([
             QStandardItem("row %s, column %s" % (5, 0)),
