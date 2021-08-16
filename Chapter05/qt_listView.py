@@ -24,11 +24,11 @@ class ListViewDemo(QWidget):
         self.qList = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6']
         slm.setStringList(self.qList)
         listView.setModel(slm)
-        listView.clicked.connect(self.clicked)
+        listView.clicked.connect(self.item_clicked)
         layout.addWidget(listView)
         self.setLayout(layout)
 
-    def clicked(self, qModelIndex):
+    def item_clicked(self, qModelIndex):
         QMessageBox.information(self, "QListView", "你选择了: " + self.qList[qModelIndex.row()])
 
 
