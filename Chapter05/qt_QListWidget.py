@@ -4,7 +4,6 @@
     【简介】
 	PySide6中 QListWidget 例子
 
-
 """
 
 import sys
