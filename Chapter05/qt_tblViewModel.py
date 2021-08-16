@@ -5,7 +5,7 @@
 
 """
 
-from PySide6.QtWidgets import *
+from PySide6.QtWidgets import QTableView, QApplication, QVBoxLayout, QWidget, QPushButton, QMessageBox
 from PySide6.QtGui import *
 from PySide6.QtCore import *
 import sys
@@ -60,7 +60,7 @@ class Table(QWidget):
     def btn_clicks_2(self):
         print("点击了删除按钮")
         index = self.tableView.currentIndex()
-        print(index,index.row())
+        print(index, index.row())
         self.model.removeRow(index.row())
 
 
