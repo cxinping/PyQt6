@@ -5,7 +5,7 @@
 
 """
 
-from PySide6.QtWidgets import QTableView, QApplication, QVBoxLayout, QWidget, QPushButton, QMessageBox, QAbstractItemView, QHeaderView
+from PySide6.QtWidgets import QTableView, QApplication, QHBoxLayout, QVBoxLayout, QWidget, QPushButton, QMessageBox, QAbstractItemView, QHeaderView
 from PySide6.QtGui import QStandardItemModel,QStandardItem
 import sys
 
@@ -39,14 +39,24 @@ class Table(QWidget):
         self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
         self.tableView.setSelectionMode(QAbstractItemView.ExtendedSelection)  # 设置只能选中多行
 
-        dlgLayout = QVBoxLayout()
-        dlgLayout.addWidget(self.tableView)
-        self.btn_1 = QPushButton("删除表格中选中的记录")
-        self.btn_1.clicked.connect(self.btn_clicks_2)  # 连接点击信号到响应方法
+        # 局部布局
+        vboxLayout = QVBoxLayout()
+        vboxLayout.addWidget(self.tableView)
+        self.add_btn = QPushButton("添加记录")
+        self.add_btn.clicked.connect(self.add_records_btn_click)  # 连接点击信号到响应方法
 
-        dlgLayout.addWidget(self.btn_1)
+        self.del_btn = QPushButton("删除选中的记录")
+        self.del_btn.clicked.connect(self.del_records_btn_click)  # 连接点击信号到响应方法
+        # 局部布局
+        hboxLayout = QHBoxLayout()
+        hboxLayout.addWidget(self.add_btn)
+        hboxLayout.addWidget(self.del_btn)
 
-        self.setLayout(dlgLayout)
+        # 全局布局
+        wl = QVBoxLayout(self)
+        wl.addLayout(vboxLayout)
+        wl.addLayout(hboxLayout)
+
 
     # 点击响应方法, 删除当前选中的数据方法1
     def btn_clicks_1(self):
@@ -63,7 +73,7 @@ class Table(QWidget):
             MessageBox.information(self.tableView, "标题", "没有选中表格中要删除的行")
 
     # 点击响应方法, 删除当前选中的数据方法2
-    def btn_clicks_2(self):
+    def del_records_btn_click(self):
         print("点击了删除按钮")
         # index = self.tableView.currentIndex()
         # print(index, index.row())
@@ -81,6 +91,15 @@ class Table(QWidget):
         list1.sort(key=int, reverse=True)  # 用sort方法将list进行降序排列
         for i in list1:  # 按照list删除对应行
             self.model.removeRow(i)
+
+    def add_records_btn_click(self):
+        self.model.appendRow([
+            QStandardItem("row %s, column %s" % (5, 0)),
+            QStandardItem("row %s, column %s" % (6, 1)),
+            QStandardItem("row %s, column %s" % (7, 2)),
+            QStandardItem("row %s, column %s" % (8, 3)),
+        ])
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

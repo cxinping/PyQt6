@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*- 
-'''
+"""
     【简介】
     PySide6中 实时刷新界面例子
- 
-  
-'''
+
+
+"""
 
 from PySide6.QtCore import *
 from PySide6.QtGui import *
