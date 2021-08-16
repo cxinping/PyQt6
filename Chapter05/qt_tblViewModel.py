@@ -6,8 +6,7 @@
 """
 
 from PySide6.QtWidgets import QTableView, QApplication, QVBoxLayout, QWidget, QPushButton, QMessageBox
-from PySide6.QtGui import *
-from PySide6.QtCore import *
+from PySide6.QtGui import QStandardItemModel,QStandardItem
 import sys
 
 
