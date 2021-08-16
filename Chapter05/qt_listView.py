@@ -11,6 +11,7 @@ from PyQt6.QtGui import *
 from PyQt6.QtCore import *
 import sys
 
+
 class ListViewDemo(QWidget):
     def __init__(self, parent=None):
         super(ListViewDemo, self).__init__(parent)
@@ -19,7 +20,7 @@ class ListViewDemo(QWidget):
         layout = QVBoxLayout()
 
         listView = QListView()
-        slm = QStringListModel();
+        slm = QStringListModel()
         self.qList = ['Item 1', 'Item 2', 'Item 3', 'Item 4']
         slm.setStringList(self.qList)
         listView.setModel(slm)
