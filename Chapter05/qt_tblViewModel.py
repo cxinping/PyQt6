@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*- 
 """
     【简介】
-	PySide6中QTableView表格视图控件的例子
+	PySide6中 QTableView表格视图控件的例子
 
 """
 

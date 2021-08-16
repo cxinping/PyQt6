@@ -1,19 +1,15 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     【简介】
-	PyQt5中 QListView 例子       
-  
-'''
+	PySide6中 QListView 例子
 
-# from PyQt5.QtWidgets import QApplication, QWidget , QVBoxLayout , QListView, QMessageBox
-# from PyQt5.QtCore import QStringListModel
+"""
 
 from PyQt6.QtWidgets import *
 from PyQt6.QtGui import *
 from PyQt6.QtCore import *
 import sys
-
 
 class ListViewDemo(QWidget):
     def __init__(self, parent=None):
