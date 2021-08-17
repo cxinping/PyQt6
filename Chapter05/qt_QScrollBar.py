@@ -40,7 +40,7 @@ class Example(QWidget):
         self.setLayout(hbox)
 
     def sliderval(self):
-        print(self.s1.value(), self.s2.value(), self.s3.value())
+        #print(self.s1.value(), self.s2.value(), self.s3.value())
         # 设置调色板
         palette = QPalette()
         color = QColor(self.s1.value(), self.s2.value(), self.s3.value(), 255)
