@@ -5,8 +5,9 @@
 
 """
 
-from PySide6.QtWidgets import QTableView, QApplication, QHBoxLayout, QVBoxLayout, QWidget, QPushButton, QMessageBox, QAbstractItemView, QHeaderView
-from PySide6.QtGui import QStandardItemModel,QStandardItem
+from PySide6.QtWidgets import (QTableView, QApplication, QHBoxLayout, QVBoxLayout, QWidget, QPushButton, QMessageBox,
+    QAbstractItemView, QHeaderView)
+from PySide6.QtGui import QStandardItemModel, QStandardItem
 import sys
 
 
@@ -57,7 +58,6 @@ class Table(QWidget):
         wl.addLayout(vboxLayout)
         wl.addLayout(hboxLayout)
 
-
     # 点击响应方法, 删除当前选中的数据方法1
     def btn_clicks_1(self):
         indexs = self.tableView.selectionModel().selection().indexes()
@@ -75,7 +75,7 @@ class Table(QWidget):
     def del_records_btn_click(self):
         # index = self.tableView.currentIndex()
         # print(index, index.row())
-        #self.model.removeRow(index.row())
+        # self.model.removeRow(index.row())
 
         # indexs = self.tableView.selectionModel().selectedRows()
         # for index in reversed(indexs):
