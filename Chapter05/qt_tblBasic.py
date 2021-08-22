@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*- 
 
-'''
+"""
     【简介】
 	PySide6中单元格的基本例子
-    
-'''
+
+"""
 
 import sys
 from PySide6.QtWidgets import (QWidget, QTableWidget, QHBoxLayout, QApplication, QTableWidgetItem, QAbstractItemView)
@@ -50,7 +50,7 @@ class Table(QWidget):
         # tableWidget.horizontalHeader().setVisible(False)
 
         # 不显示表格单元格的分割线
-        # tableWidget.setShowGrid(False)
+        #tableWidget.setShowGrid(False)
         # 不显示垂直表头
         tableWidget.verticalHeader().setVisible(False)
 
