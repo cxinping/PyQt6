@@ -20,3 +20,4 @@ if __name__ == '__main__':
     # 设置10s后自动退出
     QTimer.singleShot(10000, app.quit)
     sys.exit(app.exec())
+
