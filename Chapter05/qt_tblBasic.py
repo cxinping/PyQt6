@@ -11,6 +11,7 @@ from PySide6.QtWidgets import (QWidget, QTableWidget, QHBoxLayout, QApplication,
 
 
 class Table(QWidget):
+
     def __init__(self):
         super().__init__()
         self.initUI()
@@ -50,7 +51,7 @@ class Table(QWidget):
         # tableWidget.horizontalHeader().setVisible(False)
 
         # 不显示表格单元格的分割线
-        #tableWidget.setShowGrid(False)
+        # tableWidget.setShowGrid(False)
         # 不显示垂直表头
         tableWidget.verticalHeader().setVisible(False)
 
