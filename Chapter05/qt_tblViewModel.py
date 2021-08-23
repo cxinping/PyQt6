@@ -6,7 +6,7 @@
 """
 
 from PySide6.QtWidgets import (QTableView, QApplication, QHBoxLayout, QVBoxLayout, QWidget, QPushButton, QMessageBox,
-    QAbstractItemView, QHeaderView)
+                               QAbstractItemView, QHeaderView)
 from PySide6.QtGui import QStandardItemModel, QStandardItem
 import sys
 
@@ -32,11 +32,15 @@ class Table(QWidget):
         self.tableView = QTableView()
         self.tableView.setModel(self.model)
 
-        # 下面代码让表格 100% 的填满窗口
-        # self.tableView.horizontalHeader().setStretchLastSection(True)
-        # self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        ############ 下面代码让表格 100% 的填满窗口
+        #self.tableView.horizontalHeader().setStretchLastSection(True)
+        #self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-        # 下面代码可以选中表格的多行
+        ############ 下面代码要限定只能选择整行
+        # self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
+        # self.tableView.setSelectionMode(QAbstractItemView.SingleSelection)  # 设置只能选中一行
+
+        ############# 下面代码可以选中表格的多行
         self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
         self.tableView.setSelectionMode(QAbstractItemView.ExtendedSelection)  # 设置只能选中多行
 
@@ -44,10 +48,12 @@ class Table(QWidget):
         vboxLayout = QVBoxLayout()
         vboxLayout.addWidget(self.tableView)
         self.add_btn = QPushButton("添加记录")
-        self.add_btn.clicked.connect(self.add_records_btn_click)  # 连接点击信号到响应方法
+        # 连接信号槽，点击按钮 add_bt n绑定槽事件
+        self.add_btn.clicked.connect(self.add_records_btn_click)
 
-        self.del_btn = QPushButton("删除选中的记录")
-        self.del_btn.clicked.connect(self.del_records_btn_click)  # 连接点击信号到响应方法
+        self.del_btn = QPushButton("删除多行记录")
+        # 连接信号槽，点击按钮 del_btn 绑定槽事件
+        self.del_btn.clicked.connect(self.del_records_btn_click)
         # 局部布局
         hboxLayout = QHBoxLayout()
         hboxLayout.addWidget(self.add_btn)
@@ -58,36 +64,27 @@ class Table(QWidget):
         wl.addLayout(vboxLayout)
         wl.addLayout(hboxLayout)
 
-    # 点击响应方法, 删除当前选中的数据方法1
-    def btn_clicks_1(self):
-        indexs = self.tableView.selectionModel().selection().indexes()
-        print(indexs)
-        if len(indexs) > 0:
-            # 取第一行的索引
-            index = indexs[0]
-            self.model.removeRows(index.row(), 1)
-
-        else:
-            MessageBox = QMessageBox()
-            MessageBox.information(self.tableView, "标题", "没有选中表格中要删除的行")
+    # 点击删除按钮响应方法, 删除选中的单行数据
+    def del_record_btn_click(self):
+        index = self.tableView.currentIndex()  # 取得当前选中行的index
+        print(index.row())
+        self.model.removeRow(index.row())  # 通过index的row()操作得到行数进行删除
 
     # 点击删除按钮响应方法, 删除选中的多行数据
     def del_records_btn_click(self):
-        # index = self.tableView.currentIndex()
-        # print(index, index.row())
-        # self.model.removeRow(index.row())
-
-        # indexs = self.tableView.selectionModel().selectedRows()
-        # for index in reversed(indexs):
-        #     self.model.removeRow(index.row())
 
         indexs = self.tableView.selectionModel().selectedRows()
-        list1 = []  # 创建一个空list用于存放需要删除的行号
+        temp_list = []  # 创建一个空队列用于存放需要删除的行号
         for index in indexs:
-            list1.append(index.row())  # 获得需要删除的行号的list
-        list1.sort(key=int, reverse=True)  # 用sort方法将list进行降序排列
-        for i in list1:  # 按照list删除对应行
-            self.model.removeRow(i)
+            temp_list.append(index.row())  # 队列中保存需要删除的行号
+        temp_list.sort(key=int, reverse=True)  # 用sort方法将队列进行降序排列
+        print(temp_list)
+        if temp_list:
+            for i in temp_list:  # 按照队列删除对应的行
+                self.model.removeRow(i)
+        else:
+            MessageBox = QMessageBox()
+            MessageBox.information(self.tableView, "标题", "没有选中表格中要删除的行")
 
     # 点击添加按钮相应方法，添加数据
     def add_records_btn_click(self):

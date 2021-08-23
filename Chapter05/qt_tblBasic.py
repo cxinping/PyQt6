@@ -18,7 +18,7 @@ class Table(QWidget):
 
     def initUI(self):
         self.setWindowTitle("QTableWidget 例子")
-        self.resize(430, 230);
+        self.resize(430, 230)
         conLayout = QHBoxLayout()
         tableWidget = QTableWidget()
         tableWidget.setRowCount(4)
@@ -33,7 +33,7 @@ class Table(QWidget):
         newItem = QTableWidgetItem("男")
         tableWidget.setItem(0, 1, newItem)
 
-        newItem = QTableWidgetItem("160")
+        newItem = QTableWidgetItem("80")
         tableWidget.setItem(0, 2, newItem)
 
         # 将表格变为禁止编辑
