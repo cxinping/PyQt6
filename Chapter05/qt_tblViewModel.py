@@ -80,8 +80,10 @@ class Table(QWidget):
         # 第二种方法: 删除单行数据
 
         index = self.tableView.currentIndex()  # 取得当前选中行的index
+        if -1 == index.row():
+            return
         print(index.row())
-        #self.model.removeRow(index.row())  # 通过index的row()操作得到行数进行删除
+        self.model.removeRow(index.row())  # 通过index的row()操作得到行数进行删除
 
     # 点击删除按钮响应方法, 删除选中的多行数据
     def del_records_btn_click(self):
