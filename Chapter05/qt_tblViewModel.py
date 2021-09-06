@@ -9,7 +9,7 @@ from PySide6.QtWidgets import (QTableView, QApplication, QHBoxLayout, QVBoxLayou
 QAbstractItemView, QHeaderView)
 from PySide6.QtGui import QStandardItemModel, QStandardItem
 import sys
-
+from PySide6.QtCore import Qt
 
 class Table(QWidget):
 
@@ -45,6 +45,9 @@ class Table(QWidget):
         self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
         self.tableView.setSelectionMode(QAbstractItemView.ExtendedSelection)  # 设置只能选中多行
 
+        # 让 tableView 失去焦点
+        self.tableView.setFocusPolicy(Qt.NoFocus)
+
         # 局部布局
         vboxLayout = QVBoxLayout()
         vboxLayout.addWidget(self.tableView)
@@ -54,7 +57,7 @@ class Table(QWidget):
 
         self.del_btn = QPushButton("删除多行记录")
         # 连接信号槽，点击按钮 del_btn 绑定槽事件
-        self.del_btn.clicked.connect(self.del_records_btn_click)
+        self.del_btn.clicked.connect(self.del_record_btn_click)
         # 局部布局
         hboxLayout = QHBoxLayout()
         hboxLayout.addWidget(self.add_btn)
@@ -68,16 +71,17 @@ class Table(QWidget):
     # 点击删除按钮响应方法, 删除选中的单行数据
     def del_record_btn_click(self):
         # 第一种方法: 删除单行数据
-        indexs = self.tableView.selectionModel().selection().indexes()
-        if len(indexs) > 0:
-            # 取第一行的索引
-            index = indexs[0]
-            self.model.removeRows(index.row(), 1)
+        # indexs = self.tableView.selectionModel().selection().indexes()
+        # if len(indexs) > 0:
+        #     # 取第一行的索引
+        #     index = indexs[0]
+        #     self.model.removeRows(index.row(), 1)
 
         # 第二种方法: 删除单行数据
-        # index = self.tableView.currentIndex()  # 取得当前选中行的index
-        # print(index.row())
-        # self.model.removeRow(index.row())  # 通过index的row()操作得到行数进行删除
+
+        index = self.tableView.currentIndex()  # 取得当前选中行的index
+        print(index.row())
+        #self.model.removeRow(index.row())  # 通过index的row()操作得到行数进行删除
 
     # 点击删除按钮响应方法, 删除选中的多行数据
     def del_records_btn_click(self):
