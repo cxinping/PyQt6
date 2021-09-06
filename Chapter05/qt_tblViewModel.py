@@ -47,6 +47,10 @@ class Table(QWidget):
 
         # 让 tableView 失去焦点
         self.tableView.setFocusPolicy(Qt.NoFocus)
+        
+        # 去掉左边的行号
+        # headerView  = self.tableView.verticalHeader()
+        # headerView.setHidden(True)
 
         # 局部布局
         vboxLayout = QVBoxLayout()
@@ -78,7 +82,6 @@ class Table(QWidget):
         #     self.model.removeRows(index.row(), 1)
 
         # 第二种方法: 删除单行数据
-
         index = self.tableView.currentIndex()  # 取得当前选中行的index
         if -1 == index.row():
             return
