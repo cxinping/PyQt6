@@ -6,7 +6,7 @@
 """
 
 from PySide6.QtWidgets import (QTableView, QApplication, QHBoxLayout, QVBoxLayout, QWidget, QPushButton, QMessageBox,
-                               QAbstractItemView, QHeaderView)
+QAbstractItemView, QHeaderView)
 from PySide6.QtGui import QStandardItemModel, QStandardItem
 import sys
 
@@ -19,8 +19,9 @@ class Table(QWidget):
         self.setWindowTitle("QTableView表格视图控件的例子")
         self.resize(500, 300)
 
-        # 设置数据层次结构，5行4列
+        # 准备数据模型，设置数据层次结构为5行4列
         self.model = QStandardItemModel(5, 4)
+        # 设置数据栏名称
         self.model.setHorizontalHeaderLabels(['标题1', '标题2', '标题3', '标题4'])
 
         for row in range(5):
@@ -66,25 +67,43 @@ class Table(QWidget):
 
     # 点击删除按钮响应方法, 删除选中的单行数据
     def del_record_btn_click(self):
-        index = self.tableView.currentIndex()  # 取得当前选中行的index
-        print(index.row())
-        self.model.removeRow(index.row())  # 通过index的row()操作得到行数进行删除
+        # 第一种方法: 删除单行数据
+        indexs = self.tableView.selectionModel().selection().indexes()
+        if len(indexs) > 0:
+            # 取第一行的索引
+            index = indexs[0]
+            self.model.removeRows(index.row(), 1)
+
+        # 第二种方法: 删除单行数据
+        # index = self.tableView.currentIndex()  # 取得当前选中行的index
+        # print(index.row())
+        # self.model.removeRow(index.row())  # 通过index的row()操作得到行数进行删除
 
     # 点击删除按钮响应方法, 删除选中的多行数据
     def del_records_btn_click(self):
+        indexs = self.tableView.selectionModel().selection().indexes()
+        #print(indexs)
+        temp_list = []
+        for index in reversed(indexs):
+            #print('index.row() => ',index.row())
+            temp_list.append(index.row())
+            #self.model.removeRow(index.row())
 
-        indexs = self.tableView.selectionModel().selectedRows()
-        temp_list = []  # 创建一个空队列用于存放需要删除的行号
-        for index in indexs:
-            temp_list.append(index.row())  # 队列中保存需要删除的行号
-        temp_list.sort(key=int, reverse=True)  # 用sort方法将队列进行降序排列
+        temp_list.sort(key=int, reverse=True)
         print(temp_list)
-        if temp_list:
-            for i in temp_list:  # 按照队列删除对应的行
-                self.model.removeRow(i)
-        else:
-            MessageBox = QMessageBox()
-            MessageBox.information(self.tableView, "标题", "没有选中表格中要删除的行")
+
+        # indexs = self.tableView.selectionModel().selectedRows()
+        # temp_list = []  # 创建一个空队列用于存放需要删除的行号
+        # for index in indexs:
+        #     temp_list.append(index.row())  # 队列中保存需要删除的行号
+        # temp_list.sort(key=int, reverse=True)  # 用sort方法将队列进行降序排列
+        # print(temp_list)
+        # if temp_list:
+        #     for i in temp_list:  # 按照队列删除对应的行
+        #         self.model.removeRow(i)
+        # else:
+        #     MessageBox = QMessageBox()
+        #     MessageBox.information(self.tableView, "标题", "没有选中表格中要删除的行")
 
     # 点击添加按钮相应方法，添加数据
     def add_records_btn_click(self):

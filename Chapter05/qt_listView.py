@@ -13,6 +13,7 @@ import sys
 
 
 class ListViewDemo(QWidget):
+
     def __init__(self, parent=None):
         super(ListViewDemo, self).__init__(parent)
         self.setWindowTitle("QListView 例子")
