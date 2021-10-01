@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 
-'''
+"""
     【简介】
 	PySide6中 QTabWidget 例子
-   
-  
-'''
+
+"""
 
 import sys
 from PySide6.QtWidgets import *
 
-
 class TabDemo(QTabWidget):
+
     def __init__(self, parent=None):
         super(TabDemo, self).__init__(parent)
         self.tab1 = QWidget()
