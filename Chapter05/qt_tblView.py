@@ -27,7 +27,7 @@ class Table(QWidget):
 
         for row in range(5):
             for column in range(4):
-                item = QStandardItem("row %s, column %s" % (row, column))
+                item = QStandardItem("行 %s, 列 %s" % (row, column ))
                 self.model.setItem(row, column, item)
 
         # 实例化表格视图，设置模型为自定义的模型
