@@ -17,7 +17,7 @@ class Table(QWidget):
     def __init__(self, arg=None):
         super(Table, self).__init__(arg)
         # 设置窗体的标题和初始大小
-        self.setWindowTitle("QTableView表格视图控件的例子")
+        self.setWindowTitle("QTableView 表格视图控件的例子")
         self.resize(600, 300)
 
         # 准备数据模型，设置数据层次结构为6行5列
