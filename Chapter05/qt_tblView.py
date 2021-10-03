@@ -18,15 +18,15 @@ class Table(QWidget):
         super(Table, self).__init__(arg)
         # 设置窗体的标题和初始大小
         self.setWindowTitle("QTableView表格视图控件的例子")
-        self.resize(500, 300)
+        self.resize(600, 300)
 
-        # 准备数据模型，设置数据层次结构为5行4列
-        self.model = QStandardItemModel(5, 4)
+        # 准备数据模型，设置数据层次结构为6行5列
+        self.model = QStandardItemModel(6, 5)
         # 设置数据栏名称
-        self.model.setHorizontalHeaderLabels(['标题1', '标题2', '标题3', '标题4'])
+        self.model.setHorizontalHeaderLabels(['标题1', '标题2', '标题3', '标题4',  '标题5'])
 
-        for row in range(5):
-            for column in range(4):
+        for row in range(6):
+            for column in range(5):
                 item = QStandardItem("行 %s, 列 %s" % (row, column ))
                 self.model.setItem(row, column, item)
 
