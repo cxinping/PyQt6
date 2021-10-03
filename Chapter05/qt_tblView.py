@@ -11,7 +11,6 @@ from PySide6.QtGui import QStandardItemModel, QStandardItem
 import sys
 from PySide6.QtCore import Qt
 
-
 class Table(QWidget):
 
     def __init__(self, arg=None):
