@@ -6,11 +6,12 @@
 """
 
 from PySide6.QtWidgets import (QTableView, QApplication, QHBoxLayout, QVBoxLayout, QWidget, QPushButton, QMessageBox,
-QAbstractItemView, QHeaderView)
+                               QAbstractItemView, QHeaderView)
 from PySide6.QtGui import QStandardItemModel, QStandardItem
 import sys
 from PySide6.QtCore import Qt
 from PySide6 import QtCore
+
 
 class Table(QWidget):
 
@@ -35,8 +36,8 @@ class Table(QWidget):
         self.tableView.setModel(self.model)
 
         ############ 下面代码让表格 100% 的填满窗口
-        #self.tableView.horizontalHeader().setStretchLastSection(True)
-        #self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        # self.tableView.horizontalHeader().setStretchLastSection(True)
+        # self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
         ############ 下面代码要限定只能选择整行
         # self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
@@ -106,9 +107,9 @@ class Table(QWidget):
         if temp_list:
             for i in temp_list:  # 按照队列删除对应的行
                 self.model.removeRow(i)
-        # else:
-        #     MessageBox = QMessageBox()
-        #     MessageBox.information(self.tableView, "标题", "没有选中表格中要删除的行")
+        else:
+            MessageBox = QMessageBox()
+            MessageBox.information(self.tableView, "标题", "没有选中表格中要删除的行")
 
     # 点击添加按钮相应方法，添加数据
     def add_records_btn_click(self):
