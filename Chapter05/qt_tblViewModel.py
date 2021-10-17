@@ -38,16 +38,13 @@ class Table(QWidget):
         #self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
         ############ 下面代码要限定只能选择整行
-        # self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
-        # self.tableView.setSelectionMode(QAbstractItemView.SingleSelection)  # 设置只能选中一行
+        self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
+        self.tableView.setSelectionMode(QAbstractItemView.SingleSelection)  # 设置只能选中一行
 
         ############# 下面代码可以选中表格的多行
-        self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
-        self.tableView.setSelectionMode(QAbstractItemView.ExtendedSelection)  # 设置只能选中多行
+        # self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
+        # self.tableView.setSelectionMode(QAbstractItemView.ExtendedSelection)  # 设置只能选中多行
 
-        # 让 tableView 失去焦点
-        self.tableView.setFocusPolicy(Qt.NoFocus)
-        
         # 去掉左边的行号
         # headerView  = self.tableView.verticalHeader()
         # headerView.setHidden(True)
@@ -85,7 +82,6 @@ class Table(QWidget):
         index = self.tableView.currentIndex()  # 取得当前选中行的index
         if -1 == index.row():
             return
-        print(index.row())
         self.model.removeRow(index.row())  # 通过index的row()操作得到行数进行删除
 
     # 点击删除按钮响应方法, 删除选中的多行数据
