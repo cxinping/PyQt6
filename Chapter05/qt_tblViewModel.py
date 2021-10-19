@@ -56,7 +56,7 @@ class Table(QWidget):
         data = self.tableView.model().index(1, 2).data()
         print(data)
 
-        # 去掉左边的行号
+        # 下面代码去掉左边表格的行号
         # headerView  = self.tableView.verticalHeader()
         # headerView.setHidden(True)
 
@@ -64,7 +64,7 @@ class Table(QWidget):
         vboxLayout = QVBoxLayout()
         vboxLayout.addWidget(self.tableView)
         self.add_btn = QPushButton("添加记录")
-        # 连接信号槽，点击按钮 add_bt n绑定槽事件
+        # 连接信号槽，点击按钮 add_btn 绑定槽事件
         self.add_btn.clicked.connect(self.add_records_btn_click)
 
         self.del_btn = QPushButton("删除多行记录")
