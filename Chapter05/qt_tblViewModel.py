@@ -34,25 +34,25 @@ class Table(QWidget):
         self.tableView = QTableView()
         self.tableView.setModel(self.model)
 
-        ############ 下面代码让表格 100% 的填满窗口
+        # 下面代码让表格 100% 的填满窗口
         self.tableView.horizontalHeader().setStretchLastSection(True)
         self.tableView.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
-        ########### 下面代码让表格禁止编辑
+        # 下面代码让表格禁止编辑
         self.tableView.setEditTriggers(QAbstractItemView.NoEditTriggers)
 
-        ########### 下面代码让表格设置选中背景色
+        # 下面代码让表格设置选中背景色
         self.tableView.setStyleSheet("selection-background-color:lightblue;")
 
-        ############ 下面代码要限定只能选择整行
+        # 下面代码要限定只能选择整行
         # self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
         # self.tableView.setSelectionMode(QAbstractItemView.SingleSelection)  # 设置只能选中一行
 
-        ############# 下面代码可以选中表格的多行
+        # 下面代码可以选中表格的多行
         self.tableView.setSelectionBehavior(QAbstractItemView.SelectRows)  # 设置只能选中整行
         self.tableView.setSelectionMode(QAbstractItemView.ExtendedSelection)  # 设置只能选中多行
 
-        ############# 下面代码可以打印表格的1行2列数据
+        # 下面代码可以打印表格的1行2列数据
         data = self.tableView.model().index(1, 2).data()
         print(data)
 
